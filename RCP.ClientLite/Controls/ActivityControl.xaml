@@ -45,6 +45,7 @@
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Content="SMART" IsChecked="{Binding IsSmart}" />
                     </StackPanel>
+                    <TextBox Text="{Binding AfkTicks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </StackPanel>
             </Grid>
         </Border>

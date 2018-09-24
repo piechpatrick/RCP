@@ -41,6 +41,8 @@ namespace RCP.ClientLite.Models
 
         private GlobalKeyboardHook keyboardHook;
 
+        private int afkTicks;
+
 
 
         public string Name
@@ -90,6 +92,12 @@ namespace RCP.ClientLite.Models
             set { this.SetProperty(ref this.activityState, value); }
         }
 
+        public int AfkTicks
+        {
+            get { return this.afkTicks; }
+            set { this.SetProperty(ref this.afkTicks, value); }
+        }
+
         public Activity()
         {
             dispatcherTimer.Tick += DispatcherTimer_Tick;
@@ -98,6 +106,7 @@ namespace RCP.ClientLite.Models
             this.keyboardHook.KeyboardPressed += KeyboardHook_KeyboardPressed;
             MouseHook.MouseAction += MouseHook_MouseAction;
             this.ActivityState = ActivityState.None;
+            this.AfkTicks = 30;
         }
 
 
@@ -152,13 +161,13 @@ namespace RCP.ClientLite.Models
 
         private void KeyboardHook_KeyboardPressed(object sender, GlobalKeyboardHookEventArgs e)
         {
-            this.afkTicks = 0;
+            this.afkTemp = 0;
             this.reStartTimers();
         }
 
         private void MouseHook_MouseAction(object sender, EventArgs e)
         {
-            this.afkTicks = 0;
+            this.afkTemp = 0;
             this.reStartTimers();
         }
 
@@ -172,17 +181,15 @@ namespace RCP.ClientLite.Models
             }
         }
 
-
-        private const int afkInterval = 60;
-        int afkTicks = 0;
+        private int afkTemp = 0;
         private async void PauseOrResume()
         {
             await Task.Factory.StartNew(async () =>
             {
                 while (true)
                 {
-                    afkTicks++;
-                    if (afkTicks > afkInterval)
+                    afkTemp++;
+                    if (afkTemp > this.AfkTicks)
                         this.Pause();
                     await Task.Delay(1000);
                 }

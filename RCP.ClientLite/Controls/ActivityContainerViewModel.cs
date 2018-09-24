@@ -19,11 +19,9 @@ namespace RCP.ClientLite.Controls
         private ICommand deleteActivitiesCommand;
         private ICommand saveActivityCommand;
 
-        private ObservableCollection<Activity> activities;
-
         public ActivityContainerViewModel()
         {
-            this.Activities = new ObservableCollection<Activity>();
+            
         }
 
         public ICommand AddActivityCommand => this.addActivityCommand == null 
@@ -37,14 +35,14 @@ namespace RCP.ClientLite.Controls
 
         public ObservableCollection<Activity> Activities
         {
-            get { return this.activities; }
-            set { this.SetProperty(ref this.activities, value); }
+            get { return Visualization.Instance.Activities; }
         }
+        
 
         private void addActivity()
         {
             var activity = new Activity();
-            this.Activities.Add(activity);
+            Visualization.Instance.AddActivity(activity);
         }
 
         private void deleteActivities(object ob)
@@ -54,7 +52,7 @@ namespace RCP.ClientLite.Controls
                 var items = ob as IList;
                 foreach (var act in items.Cast<Activity>().ToList())
                 {
-                    this.Activities.Remove(act);
+                    Visualization.Instance.DeleteActivity(act);
                 }
                
             }
