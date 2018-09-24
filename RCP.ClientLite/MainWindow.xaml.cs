@@ -32,7 +32,7 @@ namespace RCP.ClientLite
         protected override void OnStateChanged(EventArgs e)
         {
             if (WindowState == WindowState.Minimized)
-                this.Hide();
+               // this.Hide();
 
             base.OnStateChanged(e);
         }
