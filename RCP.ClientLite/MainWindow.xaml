@@ -8,7 +8,7 @@
         x:Class="RCP.ClientLite.MainWindow"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" >
+        Title="MainWindow" Height="600" Width="980" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
