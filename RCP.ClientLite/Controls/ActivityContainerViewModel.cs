@@ -53,8 +53,7 @@ namespace RCP.ClientLite.Controls
                 foreach (var act in items.Cast<Activity>().ToList())
                 {
                     Visualization.Instance.DeleteActivity(act);
-                }
-               
+                }               
             }
         }
 

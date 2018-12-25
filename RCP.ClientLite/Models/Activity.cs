@@ -153,10 +153,8 @@ namespace RCP.ClientLite.Models
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
-            if (sw.IsRunning)
-            {
-                this.TimeSpan = sw.Elapsed;
-            }
+            if (sw.IsRunning)            
+                this.TimeSpan = sw.Elapsed;          
         }
 
         private void KeyboardHook_KeyboardPressed(object sender, GlobalKeyboardHookEventArgs e)
@@ -189,7 +187,7 @@ namespace RCP.ClientLite.Models
                 while (true)
                 {
                     afkTemp++;
-                    if (afkTemp > this.AfkTicks)
+                    if (afkTemp > this.AfkTicks && this.IsSmart)
                         this.Pause();
                     await Task.Delay(1000);
                 }
