@@ -39,13 +39,14 @@
                     </Button.ContentTemplate>
                 </Button>
                 <TextBox Background="Transparent" Text="{Binding Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
-                         TextWrapping="WrapWithOverflow" Grid.Column="3" MaxWidth="{Binding ElementName=TextColumn, Path=Width}"/>
+                         TextWrapping="WrapWithOverflow" Grid.Column="3" MaxWidth="{Binding ElementName=TextColumn, Path=Width}" Height="50"/>
                 <StackPanel Grid.Column="4">
                     <TextBlock Text="{Binding TimeSpan, StringFormat='{}{0:hh\\:mm\\:ss}'}" HorizontalAlignment="Center" FontSize="26"/>
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Content="SMART" IsChecked="{Binding IsSmart}" />
                     </StackPanel>
-                    <TextBox Text="{Binding AfkTicks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <Label Content="Seconds after afk start" />
+                    <TextBox Text="{Binding AfkTicks, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" IsEnabled="{Binding IsSmart}" />
                 </StackPanel>
             </Grid>
         </Border>

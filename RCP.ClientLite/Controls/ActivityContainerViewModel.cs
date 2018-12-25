@@ -42,6 +42,7 @@ namespace RCP.ClientLite.Controls
         private void addActivity()
         {
             var activity = new Activity();
+            activity.Name = "ex. name, task id";
             Visualization.Instance.AddActivity(activity);
         }
 
